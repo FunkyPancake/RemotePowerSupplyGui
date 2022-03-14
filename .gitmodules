@@ -1,0 +1,3 @@
+[submodule "RemotePowerSupply"]
+	path = RemotePowerSupply
+	url = git@github.com:FunkyPancake/RemotePowerSupply.git
