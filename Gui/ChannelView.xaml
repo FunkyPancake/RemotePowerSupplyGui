@@ -1,0 +1,55 @@
+<UserControl x:Class="RemotePowerSupplyGui.ChannelView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             Height="Auto" Width="Auto" MinWidth="200" MinHeight="150" >
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Label HorizontalAlignment="Center"> Channel1</Label>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left">Voltage</Label>
+            <TextBox Grid.Row="1" Grid.Column="1" IsReadOnly="True"></TextBox>
+            <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left">Current</Label>
+            <TextBox Grid.Row="2" Grid.Column="1" IsReadOnly="True"></TextBox>
+            <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left">Voltage Setpoint</Label>
+            <TextBox Grid.Row="3" Grid.Column="1"></TextBox>
+            <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left">Current Setpoint</Label>
+            <TextBox Grid.Row="4" Grid.Column="1"></TextBox>
+            
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label HorizontalAlignment="Left">Output Control</Label>
+            <Button Grid.Column="1" HorizontalAlignment="Left">Enable</Button>
+            <Canvas Grid.Column="2" HorizontalAlignment="Right" Width="50" Height="25">
+                <Rectangle
+                    Height="25"
+                    Width="50"
+                    Fill="Crimson" />
+            </Canvas>
+        </Grid>
+    </Grid>
+</UserControl>
