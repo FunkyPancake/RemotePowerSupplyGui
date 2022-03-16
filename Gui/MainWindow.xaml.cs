@@ -17,6 +17,7 @@ namespace RemotePowerSupplyGui
         {
             PowerSupply = powerSupply;
             InitializeComponent();
+            PowerSupplyNameLabel.Content = powerSupply.Name;
             foreach (var (channel, index) in powerSupply.Channels.Select((channel, index) => (channel, index)))
             {
                 ChannelGrid.ColumnDefinitions.Add(new ColumnDefinition());

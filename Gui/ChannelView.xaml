@@ -5,15 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
              Height="Auto" Width="Auto" MinWidth="200" MinHeight="150">
-    <Grid>
+    <Grid Margin="5">
 
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Label HorizontalAlignment="Center" Name="ChannelLabel">Channel Id</Label>
-        <Grid Grid.Row="1">
+        <Label HorizontalAlignment="Center" Name="ChannelLabel" FontWeight="Bold" >Channel Id</Label>
+        <Grid Grid.Row="1" Margin="0 5 0 5 ">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -27,9 +27,9 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left">Voltage</Label>
-            <TextBox Grid.Row="1" Grid.Column="1" IsReadOnly="True"></TextBox>
-            <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left">Current</Label>
-            <TextBox Grid.Row="2" Grid.Column="1" IsReadOnly="True"></TextBox>
+            <TextBox Grid.Row="1" Grid.Column="1" IsReadOnly="True" Background="LightGray"></TextBox>
+            <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" >Current</Label>
+            <TextBox Grid.Row="2" Grid.Column="1" IsReadOnly="True" Background="LightGray"></TextBox>
             <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left">Voltage Setpoint</Label>
             <TextBox Grid.Row="3" Grid.Column="1"></TextBox>
             <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left">Current Setpoint</Label>
@@ -47,7 +47,9 @@
             <TextBox Grid.Column="2" HorizontalAlignment="Right" Width="50" Height="25"
                      Background="Crimson"
                      TextAlignment="Center"
-                     BorderThickness="0" >OFF</TextBox>
+                     BorderThickness="0">
+                OFF
+            </TextBox>
         </Grid>
     </Grid>
 </UserControl>

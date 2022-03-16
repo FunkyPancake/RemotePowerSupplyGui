@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
+using Controller;
+using RemotePowerSupplyGui.Config;
 
 namespace RemotePowerSupplyGui
 {
@@ -9,7 +12,10 @@ namespace RemotePowerSupplyGui
     {
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
-            var mainWindow = new MainWindow();
+            var config = ConfigReader.LoadConfig<PowerSupplyConfig>(
+                Path.GetFullPath(@"./config.json"));
+            var powerSupply = new PowerSupplySerial(config.Name,config.ChannelCount);
+            var mainWindow = new MainWindow(powerSupply);
             mainWindow.Show();
         }
     }
