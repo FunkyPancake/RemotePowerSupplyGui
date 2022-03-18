@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Threading;
 using Controller;
 
 namespace RemotePowerSupplyGui
@@ -12,6 +14,7 @@ namespace RemotePowerSupplyGui
     public partial class MainWindow : Window
     {
         private IPowerSupply PowerSupply { get; }
+        private readonly DispatcherTimer _timer;
 
         public MainWindow(IPowerSupply powerSupply)
         {
@@ -26,6 +29,18 @@ namespace RemotePowerSupplyGui
                 ChannelGrid.Children.Add(panel);
                 ConnectionUpdateContent();
             }
+
+            _timer = new DispatcherTimer(new TimeSpan((int) 1e7), DispatcherPriority.Normal, OnTimerElapsed,
+                Dispatcher.CurrentDispatcher)
+            {
+                IsEnabled = false
+            };
+        }
+
+
+        private void OnTimerElapsed(object? state, EventArgs eventArgs)
+        {
+            PowerSupply.RefreshData();
         }
 
         private void ConnectButton_OnClick(object sender, RoutedEventArgs e)
@@ -34,10 +49,12 @@ namespace RemotePowerSupplyGui
             if (isConnected)
             {
                 PowerSupply.Disconnect();
+                _timer.IsEnabled = false;
             }
             else
             {
                 PowerSupply.Connect();
+                _timer.IsEnabled = true;
             }
 
             ConnectionUpdateContent();
