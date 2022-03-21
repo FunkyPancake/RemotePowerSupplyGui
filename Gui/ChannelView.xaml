@@ -5,46 +5,72 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
              Height="Auto" Width="Auto" MinWidth="200" MinHeight="150">
-    <Grid Margin="5">
-
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Label HorizontalAlignment="Center" Name="ChannelLabel" FontWeight="Bold" >Channel Id</Label>
-        <Grid Grid.Row="1" Margin="0 5 0 5 ">
+        <Label HorizontalAlignment="Center" Name="ChannelLabel" FontWeight="Bold">Channel Id</Label>
+        <Grid Grid.Row="1" Margin="5">
             <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left">Voltage</Label>
-            <TextBox Grid.Row="1" Grid.Column="1" IsReadOnly="True" Background="LightGray"></TextBox>
-            <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" >Current</Label>
-            <TextBox Grid.Row="2" Grid.Column="1" IsReadOnly="True" Background="LightGray"></TextBox>
-            <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left">Voltage Setpoint</Label>
-            <TextBox Grid.Row="3" Grid.Column="1"></TextBox>
-            <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left">Current Setpoint</Label>
-            <TextBox Grid.Row="4" Grid.Column="1"></TextBox>
+            <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalContentAlignment="Center">Voltage</Label>
+            <TextBox Grid.Row="0" Grid.Column="1"
+                     Name="VoltageTextBox"
+                     VerticalContentAlignment="Center" 
+                     IsReadOnly="True"
+                     Background="LightGray" >
+            </TextBox>
+            <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalContentAlignment="Center">Current</Label>
+            <TextBox Grid.Row="1" Grid.Column="1" 
+                     Name="CurrentTextBox"
+                     VerticalContentAlignment="Center" 
+                     IsReadOnly="True"
+                     Background="LightGray">
+            </TextBox>
+            <Label Grid.Row="2" Grid.Column="0"
+                   HorizontalAlignment="Left"
+                   VerticalContentAlignment="Center">
+                Voltage Setpoint
+            </Label>
+            <TextBox Grid.Row="2" Grid.Column="1"
+                     Name="VoltageSetpointTextBox"
+                     VerticalContentAlignment="Center">
+            </TextBox>
+            <Label Grid.Row="3" Grid.Column="0"
+                   HorizontalAlignment="Left"
+                   VerticalContentAlignment="Center">
+                Current Setpoint
+            </Label>
+            <TextBox Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center"></TextBox>
 
         </Grid>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" Height="25">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Label HorizontalAlignment="Left">Output Control</Label>
-            <Button Grid.Column="1" HorizontalAlignment="Left">Enable</Button>
-            <TextBox Grid.Column="2" HorizontalAlignment="Right" Width="50" Height="25"
+            <Button Grid.Column="1" Name="OutputButton" HorizontalAlignment="Left"
+                    Click="OutputButton_OnClick">
+                Enable
+            </Button>
+            <TextBox Grid.Column="2" 
+                     Name="OutputStatusTextBox"
+                     HorizontalAlignment="Right" Width="50" Height="25"
+                     VerticalContentAlignment="Center"
+                     HorizontalContentAlignment="Center"
                      Background="Crimson"
                      TextAlignment="Center"
                      BorderThickness="0">
