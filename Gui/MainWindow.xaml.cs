@@ -57,8 +57,7 @@ namespace RemotePowerSupplyGui
             }
             else
             {
-                PowerSupply.Connect();
-                _timer.IsEnabled = true;
+                _timer.IsEnabled = PowerSupply.Connect();
             }
 
             ConnectionUpdateContent();
