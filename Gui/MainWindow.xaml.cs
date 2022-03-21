@@ -41,6 +41,10 @@ namespace RemotePowerSupplyGui
         private void OnTimerElapsed(object? state, EventArgs eventArgs)
         {
             PowerSupply.RefreshData();
+            foreach (ChannelView channel in ChannelGrid.Children)
+            {
+                channel.RefreshView();
+            }
         }
 
         private void ConnectButton_OnClick(object sender, RoutedEventArgs e)
