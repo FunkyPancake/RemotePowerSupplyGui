@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
 using Controller;
+using Serilog;
 
 namespace RemotePowerSupplyGui
 {
@@ -30,7 +31,7 @@ namespace RemotePowerSupplyGui
                 ConnectionUpdateContent();
             }
 
-            _timer = new DispatcherTimer(new TimeSpan((int) 1e7), DispatcherPriority.Normal, OnTimerElapsed,
+            _timer = new DispatcherTimer(new TimeSpan((int) 1e6), DispatcherPriority.Normal, OnTimerElapsed,
                 Dispatcher.CurrentDispatcher)
             {
                 IsEnabled = false
@@ -49,6 +50,7 @@ namespace RemotePowerSupplyGui
 
         private void ConnectButton_OnClick(object sender, RoutedEventArgs e)
         {
+            Log.Debug("Connect button clicked.");
             var isConnected = PowerSupply.IsConnected;
             if (isConnected)
             {
@@ -57,8 +59,7 @@ namespace RemotePowerSupplyGui
             }
             else
             {
-                PowerSupply.Connect();
-                _timer.IsEnabled = true;
+                _timer.IsEnabled = PowerSupply.Connect();
             }
 
             ConnectionUpdateContent();
