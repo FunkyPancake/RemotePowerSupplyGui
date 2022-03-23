@@ -23,18 +23,11 @@ public partial class ChannelView : UserControl
         var (voltage, current) = Channel.GetSetpoints();
         VoltageSetpointTextBox.Text = voltage.ToString("F3", CultureInfo.InvariantCulture);
         CurrentSetpointTextBox.Text = current.ToString("F3", CultureInfo.InvariantCulture);
-        SetOutputButtonContent();
-    }
-
-    private void SetOutputButtonContent()
-    {
-        OutputButton.Content = Channel.OutputEnable ? "Disable" : "Enable";
     }
 
     private void OutputButton_OnClick(object sender, RoutedEventArgs e)
     {
         Channel.OutputEnable = !Channel.OutputEnable;
-        SetOutputButtonContent();
     }
 
     public void RefreshView()
