@@ -25,9 +25,8 @@ public class AppConfig
 
     public static void Save<T>(string configPath, T config) where T : IConfig
     {
-        using var file = File.CreateText(configPath);
-        var serializer = new JsonSerializer();
-        serializer.Serialize(file, config);
+        var json = JsonConvert.SerializeObject(config, Formatting.Indented);
+        File.WriteAllText(configPath,json);
     }
 }
 

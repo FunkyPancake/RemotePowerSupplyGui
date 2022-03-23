@@ -68,8 +68,9 @@
             </Grid.ColumnDefinitions>
             <Label HorizontalAlignment="Left">Output Control</Label>
             <Button Grid.Column="1" Name="OutputButton" HorizontalAlignment="Left"
+                    Width="40"
                     Click="OutputButton_OnClick">
-                Enable
+                OUT
             </Button>
             <TextBox Grid.Column="2"
                      Name="OutputStatusTextBox"
