@@ -21,21 +21,14 @@ public partial class ChannelView : UserControl
     public void InitSetpoints()
     {
         var (voltage, current) = Channel.GetSetpoints();
-        VoltageSetpointTextBox.Text = voltage.ToString("F3",CultureInfo.InvariantCulture);
-        CurrentSetpointTextBox.Text = current.ToString("F3",CultureInfo.InvariantCulture);
+        VoltageSetpointTextBox.Text = voltage.ToString("F3", CultureInfo.InvariantCulture);
+        CurrentSetpointTextBox.Text = current.ToString("F3", CultureInfo.InvariantCulture);
         SetOutputButtonContent();
     }
 
     private void SetOutputButtonContent()
     {
-        if (Channel.OutputEnable)
-        {
-            OutputButton.Content = "Disable";
-        }
-        else
-        {
-            OutputButton.Content = "Enable";
-        }
+        OutputButton.Content = Channel.OutputEnable ? "Disable" : "Enable";
     }
 
     private void OutputButton_OnClick(object sender, RoutedEventArgs e)
@@ -64,7 +57,8 @@ public partial class ChannelView : UserControl
     {
         if (e.Key == Key.Enter)
         {
-            if (double.TryParse(CurrentSetpointTextBox.Text, out var value))
+            var current = CurrentSetpointTextBox.Text;
+            if (double.TryParse(current, out var value))
                 Channel.Current = value;
         }
     }
@@ -73,7 +67,8 @@ public partial class ChannelView : UserControl
     {
         if (e.Key == Key.Enter)
         {
-            if (double.TryParse(VoltageSetpointTextBox.Text, out var value))
+            var voltage = VoltageSetpointTextBox.Text;
+            if (double.TryParse(voltage, out var value))
                 Channel.Voltage = value;
         }
     }

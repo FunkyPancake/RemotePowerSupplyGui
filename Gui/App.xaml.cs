@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Globalization;
+using System.IO;
 using System.Windows;
 using Controller;
 using RemotePowerSupplyGui.Config;
@@ -11,22 +13,33 @@ namespace RemotePowerSupplyGui
     /// </summary>
     public partial class App : Application
     {
+        private PowerSupplySerial? _powerSupply;
+        private const string ConfigJson = @"./config.json";
+
+
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
+            var today = DateTime.Today.ToString(CultureInfo.InvariantCulture);
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
-                .WriteTo.File("log.txt")
+                .WriteTo.File($"log-{today}.txt")
                 .CreateLogger();
-            var config = ConfigReader.LoadConfig<PowerSupplyConfig>(
-                Path.GetFullPath(@"./config.json"));
-            var powerSupply = new PowerSupplySerial(config.Name, config.ChannelCount);
-            var mainWindow = new MainWindow(powerSupply);
+            
+            var config = AppConfig.Load<PowerSupplyConfig>(
+                Path.GetFullPath(ConfigJson));
+            
+            _powerSupply = new PowerSupplySerial(Log.Logger, config.Name, config.ChannelCount, config.LastComPort);
+            var mainWindow = new MainWindow(_powerSupply);
             mainWindow.Show();
         }
 
         private void App_OnExit(object sender, ExitEventArgs e)
         {
             Log.CloseAndFlush();
+            var config = AppConfig.Load<PowerSupplyConfig>(
+                Path.GetFullPath(@"./config.json"));
+            config.LastComPort = _powerSupply?.ComPort ?? string.Empty;
+            AppConfig.Save(ConfigJson, config);
         }
     }
 }

@@ -3,5 +3,5 @@
 /**/bin
 /**/obj
 /packages
-/*.user
+/*.sln.DotSettings.user
 *.dll
