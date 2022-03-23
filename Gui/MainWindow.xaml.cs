@@ -30,7 +30,7 @@ namespace RemotePowerSupplyGui
                 ConnectionUpdateContent();
             }
 
-            _timer = new DispatcherTimer(new TimeSpan((int) 1e6), DispatcherPriority.Normal, OnTimerElapsed,
+            _timer = new DispatcherTimer(new TimeSpan((int) 2e6), DispatcherPriority.Normal, OnTimerElapsed,
                 Dispatcher.CurrentDispatcher)
             {
                 IsEnabled = false
@@ -55,16 +55,16 @@ namespace RemotePowerSupplyGui
             var isConnected = PowerSupply.IsConnected;
             if (isConnected)
             {
-                PowerSupply.Disconnect();
                 _timer.IsEnabled = false;
-                foreach (ChannelView channel in ChannelGrid.Children)
-                {
-                    channel.InitSetpoints();
-                }
+                PowerSupply.Disconnect();
             }
             else
             {
                 _timer.IsEnabled = PowerSupply.Connect();
+                foreach (ChannelView channel in ChannelGrid.Children)
+                {
+                    channel.InitSetpoints();
+                }
             }
 
             ConnectionUpdateContent();
