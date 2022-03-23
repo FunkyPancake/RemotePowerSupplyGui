@@ -1,9 +1,7 @@
-using RemotePowerSupplyGui.Config;
-
-namespace RemotePowerSupplyGui;
+namespace RemotePowerSupplyGui.Config;
 
 public class PowerSupplyConfig : IConfig
 {
-    public string Name;
+    public string Name = null!;
     public int ChannelCount;
 }

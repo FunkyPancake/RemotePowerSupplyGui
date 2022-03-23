@@ -14,7 +14,6 @@ namespace RemotePowerSupplyGui
     /// </summary>
     public partial class MainWindow : Window
     {
-        private IPowerSupply PowerSupply { get; }
         private readonly DispatcherTimer _timer;
 
         public MainWindow(IPowerSupply powerSupply)
@@ -38,6 +37,8 @@ namespace RemotePowerSupplyGui
             };
         }
 
+        private IPowerSupply PowerSupply { get; }
+
 
         private void OnTimerElapsed(object? state, EventArgs eventArgs)
         {
@@ -56,6 +57,10 @@ namespace RemotePowerSupplyGui
             {
                 PowerSupply.Disconnect();
                 _timer.IsEnabled = false;
+                foreach (ChannelView channel in ChannelGrid.Children)
+                {
+                    channel.InitSetpoints();
+                }
             }
             else
             {

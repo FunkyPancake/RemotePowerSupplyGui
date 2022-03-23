@@ -27,14 +27,14 @@
             <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalContentAlignment="Center">Voltage</Label>
             <TextBox Grid.Row="0" Grid.Column="1"
                      Name="VoltageTextBox"
-                     VerticalContentAlignment="Center" 
+                     VerticalContentAlignment="Center"
                      IsReadOnly="True"
-                     Background="LightGray" >
+                     Background="LightGray">
             </TextBox>
             <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalContentAlignment="Center">Current</Label>
-            <TextBox Grid.Row="1" Grid.Column="1" 
+            <TextBox Grid.Row="1" Grid.Column="1"
                      Name="CurrentTextBox"
-                     VerticalContentAlignment="Center" 
+                     VerticalContentAlignment="Center"
                      IsReadOnly="True"
                      Background="LightGray">
             </TextBox>
@@ -53,14 +53,14 @@
                    VerticalContentAlignment="Center">
                 Current Setpoint
             </Label>
-            <TextBox Grid.Row="3" Grid.Column="1" 
-                     VerticalContentAlignment="Center" 
-                     KeyDown="CurrentSetpointTextBox_OnKeyDown" 
+            <TextBox Grid.Row="3" Grid.Column="1"
+                     VerticalContentAlignment="Center"
+                     KeyDown="CurrentSetpointTextBox_OnKeyDown"
                      Name="CurrentSetpointTextBox">
             </TextBox>
 
         </Grid>
-        <Grid Grid.Row="2" Height="25">
+        <Grid Grid.Row="2" Height="25" Margin="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -71,7 +71,7 @@
                     Click="OutputButton_OnClick">
                 Enable
             </Button>
-            <TextBox Grid.Column="2" 
+            <TextBox Grid.Column="2"
                      Name="OutputStatusTextBox"
                      HorizontalAlignment="Right" Width="50" Height="25"
                      VerticalContentAlignment="Center"

@@ -9,8 +9,6 @@ namespace RemotePowerSupplyGui;
 
 public partial class ChannelView : UserControl
 {
-    private IChannel Channel { get; }
-
     public ChannelView(IChannel channel)
     {
         Channel = channel;
@@ -18,18 +16,32 @@ public partial class ChannelView : UserControl
         ChannelLabel.Content = $"Channel {Channel.Id}";
     }
 
-    private void OutputButton_OnClick(object sender, RoutedEventArgs e)
+    private IChannel Channel { get; }
+
+    public void InitSetpoints()
+    {
+        var (voltage, current) = Channel.GetSetpoints();
+        VoltageSetpointTextBox.Text = voltage.ToString(CultureInfo.InvariantCulture);
+        CurrentTextBox.Text = current.ToString(CultureInfo.InvariantCulture);
+        SetOutputButtonContent();
+    }
+
+    private void SetOutputButtonContent()
     {
         if (Channel.OutputEnable)
         {
-            Channel.OutputEnable = true;
             OutputButton.Content = "Disable";
         }
         else
         {
-            Channel.OutputEnable = false;
             OutputButton.Content = "Enable";
         }
+    }
+
+    private void OutputButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        Channel.OutputEnable = !Channel.OutputEnable;
+        SetOutputButtonContent();
     }
 
     public void RefreshView()
@@ -53,7 +65,7 @@ public partial class ChannelView : UserControl
         if (e.Key == Key.Enter)
         {
             if (double.TryParse(CurrentSetpointTextBox.Text, out var value))
-                Channel.Current = (decimal) value;
+                Channel.Current = value;
         }
     }
 
@@ -62,7 +74,7 @@ public partial class ChannelView : UserControl
         if (e.Key == Key.Enter)
         {
             if (double.TryParse(VoltageSetpointTextBox.Text, out var value))
-                Channel.Voltage = (decimal) value;
+                Channel.Voltage = value;
         }
     }
 }
