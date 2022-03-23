@@ -22,7 +22,7 @@ public partial class ChannelView : UserControl
     {
         var (voltage, current) = Channel.GetSetpoints();
         VoltageSetpointTextBox.Text = voltage.ToString("F3",CultureInfo.InvariantCulture);
-        CurrentTextBox.Text = current.ToString("F3",CultureInfo.InvariantCulture);
+        CurrentSetpointTextBox.Text = current.ToString("F3",CultureInfo.InvariantCulture);
         SetOutputButtonContent();
     }
 
