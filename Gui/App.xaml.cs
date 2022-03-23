@@ -19,9 +19,9 @@ namespace RemotePowerSupplyGui
 
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
-            var today = DateTime.Today.ToString("hh-MM-yyyy",CultureInfo.InvariantCulture);
+            var today = DateTime.Today.ToString("dd-MM-yyyy",CultureInfo.InvariantCulture);
             Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
+                .MinimumLevel.Information()
                 .WriteTo.File($"log-{today}.txt")
                 .CreateLogger();
             
